@@ -10,13 +10,13 @@ services:
       - 3307:3306
     restart: always
   eureka-server:
-    build: ./backend/eureka-server/eureka-server/
+    build: ./backend/eureka-server/
     container_name: eureka_container
     ports:
       - 8761:8761
     restart: always
   micro-service-app:
-    build: ./backend/backend-micro-service/backend-micro-service/
+    build: ./backend/backend-micro-service/
     container_name: micro_service_container
     environment:
       - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka-server:8761/eureka/

@@ -22,8 +22,11 @@ export const About = () => {
           </Col>
           <Col lg={12}>
             Github:{" "}
-            <a className="no" href="https://github.com/aminmhdi/streamify">
-              https://github.com/aminmhdi/streamify
+            <a
+              className="no"
+              href="https://github.com/aminmhdi/MyCapstoneProject"
+            >
+              https://github.com/aminmhdi/MyCapstoneProject
             </a>
           </Col>
         </Row>

@@ -9,15 +9,29 @@ import axios from "axios";
 import { useState } from "react";
 import { Card, Col, Row, Button, Spinner } from "react-bootstrap";
 import { useNavigate, Link } from "react-router-dom";
+import React, { useEffect } from "react";
 
 function Login() {
   let [loading, setLoading] = useState(false);
   let url = `${process.env.REACT_APP_BACK_END_URL}/login/signin`;
+  let userJson = sessionStorage.getItem("user");
   let [emailid, setEmailId] = useState("");
   let [password, setPassword] = useState("");
   let [typeofuser, setTypeofUser] = useState("");
   let [error, setError] = useState("");
   let navigate = useNavigate();
+  console.log(typeofuser);
+  useEffect(() => {
+    if (userJson != null) {
+      let user = JSON.parse(userJson);
+      if (user.typeofuser == "admin") {
+        navigate("/admin");
+      } else {
+        navigate("/customer");
+      }
+    }
+    // eslint-disable-next-line
+  }, []);
   let handleSubmit = (event) => {
     event.preventDefault();
     if (emailid.length == 0 || password.length == 0 || typeofuser.length == 0) {
@@ -28,10 +42,11 @@ function Login() {
       axios
         .post(url, login)
         .then((result) => {
-          if (result.data == "user login successfully") {
-            sessionStorage.setItem("user", emailid);
+          if (result.data == "User logged in successfully") {
+            sessionStorage.setItem("user", JSON.stringify(login));
             navigate("/customer");
-          } else if (result.data == "Admin login successfully") {
+          } else if (result.data == "Admin logged in successfully") {
+            sessionStorage.setItem("user", JSON.stringify(login));
             navigate("/admin");
           } else {
             setError(result.data);

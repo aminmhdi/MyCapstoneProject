@@ -1,0 +1,47 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "EurekaServerApplication",
+            "request": "launch",
+            "mainClass": "com.EurekaServerApplication"
+        },
+        {
+            "type": "java",
+            "name": "backend-micro-service",
+            "request": "launch",
+            "mainClass": "com.example.BackendMicroServiceApplication",
+            "projectName": "backend-micro-service",
+            "cwd": "${workspaceFolder}/backend-micro-service"
+        },
+        {
+            "type": "java",
+            "name": "eureka-server",
+            "request": "launch",
+            "mainClass": "com.example.EurekaServerApplication",
+            "projectName": "eureka-server",
+            "cwd": "${workspaceFolder}/eureka-server"
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Launch React App",
+            "program": "${workspaceFolder}/react-app/src/index.js",
+            "runtimeExecutable": "npm",
+            "runtimeArgs": [
+                "run",
+                "start"
+            ],
+            "cwd": "${workspaceFolder}/frontend",
+            "console": "integratedTerminal",
+            "port": 3000
+        }
+    ],
+    "compounds": [
+      {
+        "name": "Debug All",
+        "configurations": ["backend-micro-service", "eureka-server", "Launch React App"]
+      }
+    ]
+  }
