@@ -27,8 +27,7 @@ services:
       - eureka-server
     restart: always
   react-service:
-    build: ./frontend/frontend-app/
+    build: ./frontend/
     container_name: react_container
     ports:
       - 80:80
-   
